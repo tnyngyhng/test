@@ -241,9 +241,38 @@ Grafisches zeug:
 
 
 
+Dokumentation:
+- Milestones/Goal mit kleiner Beschreibung (Concept)
 
+- Tutorial
+	- How to use/launch (schrittweise erklärung mit reihenfolge + Hinweis demorace)
+	- Formations (Erklärung mit Matrix beispielbild)
+	- More spheros/colors (mit code beispiel)
+	- Ranging veränderungen mit checkstatus (wenn man unser Ranging benutzen will, muss checkstatus dazu)
 
+- Demo video
 
+- Implementierung
+	- Ranging Erklärung (Hinweis/Link zu TPVS) und Änderungen Check Status (Zu viele Farben fix und Filter falsche Positionen)
+	- sphero_demo_test.py Implementierung (Erklärung, Codebeispiel Schleife/pos.xy und receive_pose timer, Bild aus VL mit Variablennamen)
+		- Bild aus VL, Variablen erklären
+		- Erklärung mit Codebeispiel Schleife/pos
+		- Erklärung mit Codebeispiel receive_pose timer
+	- Probleme
+		- Reihenfolge
+		- Wenn man nur mit 2 arbeiten will, launch file auf 2 anpassen und den dritten rausnehmen
+
+- Evaluation
+	- parameter d und k
+		- kurze Erklärung Versuchsaufbau
+		- Ergebnisse, 2 graphen, kurze erklärung der 2 graphen
+	- formationen
+		- kurze Erklärung Versuchsaufbau
+		- Ergebnisse, Graph, kurze Erkärung
+	- Probleme
+		- Spheros zu nahe beieinander (umso häufiger dest schlechter die parameter/formationen)
+
+- Future improvements/applications
 
 
 
