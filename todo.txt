@@ -1,0 +1,304 @@
+- zeit für 2 spheros | zeit für 3 spheros mit festen startpunkten --> Unterschiede, Vergleich
+		- Genauigkeit der Distanzen nach messen mit maßband
+		- vergleich geichseitiges und gleichschenkliges dreieck und linie
+		- vergleich unterschiedlich große werte für d und k
+		- verhalten beim reinlegen eines spheros in die arena
+- 
+
+- positionen der spheros loggen und grafisch darstellen
+
+
+
+#################################
+Wenn sphero an der Wand:
+- Fährt gegen die Wand bis ecke und dann tot
+- Fährt gegen wand und bleibt stehen
+- Fährt gegen die wand und schafft es die orientierung zu wechseln
+- Fährt gegen die wand und prallt ab
+
+
+#################################
+Test für verschiedene k-Werte mit konstant d = 1.0 und 3 spheros: 
+
+k = 0.1:
+- 1.20, 1.40, 1
+- Vermutung: zu geringer k-wert führt zu zu kleinem kraftvektor
+- Die Positionen in dem Dreieck Sphero RGB führen zu totalem stillstand der spheros, warscheinlich wie oben grund
+- 3 mal probiert, immer das gleiche verhalten (bevor die distanz 1.0 erreicht wurde schon stillstand)
+- Bei einer Linie ist totaler Stillstand
+
+k = 0.2:
+- gleiche probleme wie mit k=0.1
+- kaum/gar kein sichtbarer unterschied
+
+k = 0.3:
+- probleme von k=0.2 bestehen, aber leicht besser
+- besser = distanzen nähern sich 1.0, trotzdem meistens eine Seite noch deutlich zu groß
+- Verhalten im Dreieck RGB ist auch sichtbar besser -> Der Sphero, der in der Mitte war hat sich etwas/leicht bewegt, aber trotzdem Stillstand danach
+--> kann sich nicht aus dem dreieck retten
+
+k = 0.4:
+- leicht besser als bei k=0.3
+- Distanzen wichen meisten um +-0.15 von 1.0 ab
+- Dreieck RGB wie bei k=0.3 --> Sphero in der Mitte bewegt sich leicht, aber scheinbar random und fürht zum Stillstand nach der kurzen Bewegung
+- kann sich immer noch nicht aus dem dreieck retten
+
+k = 0.5:
+- Distanzen waren ähnlich zu k=0.4, eventuell minimal besser
+- Also immernoch abweichung von +- 0.15 bis 0.10
+- Dreieck RGB verhalten war sichtbar besser. Sphero in der Mitte hat sich meistens leicht bewegt.
+- Manchmal konnte sich der Sphero in der mitte auch aus dem Dreieck befreien bzw. bewegte sich zu einen der anderen spheros wodurch sich diese dann auch bewegt haben
+
+k = 0.6 (best?):
+- Distanzen waren ziemlich gut, meisten zwischen +-0.08
+- Im Dreieck haben sich die Spheros meistens schon ein wenig mehr bewegt
+- einige Male konnten sie sich befreien, andere male haben sie sich wieder in etwa eine linie angeordnet bis zum stillstand
+
+k = 0.7:
+- Distanzen ähnlich k=0.6
+- ABER: die spheros hatten sehr starke probleme die richtige formation einzunehmen -> haben sich die ganz zeit versucht auszurichten -> ewig gefahren
+- haben es deutlich länger beobachtet, stets schwierigkeiten die formation einzunehmen
+- dreieck ähnlich k=0.6, aber nicht oft getestet, weil die spheros nie das dreieck angenommen haben
+
+k = 0.8:
+- sehr ähnlich k=0.7
+- noch schlechter?
+
+k = 1.0:
+- kamen nicht zum stillstand
+- zu starke bewegungen
+
+
+
+
+#################################
+Evaluate 'd' with k=0.6 und gleich seitiges dreieck:
+
+d = 0.2 mit 2 spheros:
+- funktionierte ganz gut
+- haben sich häufig nach 30-40 cm ausgerichtet
+- ab und zu "Unable to get starting pose of robot, unable to create global plan"
+
+d = 0.2 mit 3 spheros:
+- ähnliche abweichungen
+- formation sichtbar falsch, kein gleichseitiges, auch kein gleich schenkliges dreieck 
+
+
+d = 0.5 mit 2 spheros:
+- problem mit dem grünen sphero
+
+d = 0.5 mit 3 spheros:
+- ständig in "unable...." positioniert
+- abweichungen ähnlich d=0.2, vielleicht sogar schlechter
+- formation war immernoch ein random dreieck
+
+
+d = 0.75 mit 2 spheros:
+- funktionierte gut
+- 5 bis 10 cm abweichung
+
+d = 0.75 mit 3 spheros:
+- sind oft gegeneinander oder zu nah gefahren
+- formation war random dreieck
+- es ging leicht in richtung gleichschänkliges dreieck - 2 seiten waren meistens ok, eine seite total falsch ~30-40cm
+
+
+d = 1.0 mit 2 spheros:
+- ~10cm abstand
+
+d = 1.0 mit 3 spheros:
+- funktionierte sehr gut
+- insgesamter fehler bei 10-20cm
+- haben sich immer noch ab und zu zu nah positioniert, konnten sich aber manchmal retten
+- man konnte ein gleichseitiges dreieck erkennen
+- haben etwas mehr zeit benötigt um die formation einzunehmen als zuvor
+
+
+d = 1.25 mit 2 spheros:
+- wie bei d=1.0
+
+
+d = 1.25 mit 3 spheros:
+- haben sich nicht ausgerichtet, da meistens einer der drei mit der wand kollidierte
+- arena zu klein
+
+
+d = 1.5 mit 2 spheros:
+- wie davor ca. 5-10 cm Abweichung
+
+d = 1.5 mit 3 spheros:
+- haben sich nicht fertig ausgerichtet
+- manchmal etwa in richtiger Position(gleichseitiges Dreieck erkennbar), sind aber nie stehen geblieben immer noch kleine Bewegung und irgendwann starke Bewegung und neu ausrichten
+- stoßen oft gegen die Wand der Arena
+
+
+
+#################################
+gleichseitiges dreieck mit optimalen parametern (schenkel d=1.0 | k=0.6):
+- 20-25cm fehler
+- keine wirkliche probleme die formation einzunehmen
+- aus unbekannten gründen ein mal eine linie eingenommen
+
+
+rechtwinkliges gleichschenkliges dreieck mit optimalen parametern (schenkel d=1.0, 1.41 | k=0.6):
+- ~15cm fehler
+- haben lange gebraucht um die formation anzunehmen aber: wir hatten nicht die volle arena zur verfügung -> oft nah an der Wand und auch oft kollision
+
+spitzes gleichschenkliges dreieck mit optimalen parametern (schenkel d=1.0, 0.75 | k=0.6):
+- ~18-25cm feler
+- haben sich sehr schnell ausgerichtet
+
+stumpfes gleichschenkliges dreieck mit optimalen parametern (schenkel d=1.0, 1.8 | k=0.6):
+- ~14-15 cm fehler
+- haben manchmal probleme gehabt, weil die formation schon etwas der linie ähnlich kommt, also unable to get robot pose
+- aber haben sich sehr oft daraus von alleine wieder befreit
+- zum ersten mal passiert: sphero dreht sich auf der stelle (totaler reset notwendig)
+
+
+linie mit optimalen parametern(mitte d=0.75 , 1.5 | k=0.6):
+- fehler von ~15cm
+- haben lange gebraucht sich auszurichten aber durch verkleinerte arena bedingt
+- formation sieht nicht so gut aus, da eine fehlerhafte linie sofort auffällt im gegensatz zu einem dreieck
+
+
+
+
+#################################
+Reihenfolge der spheros laut launch file: Red > Blue > Green
+
+Reinlegen der Spheros nach der Reihenfolge in demo_test.launch:
+- keine probleme
+- sobald der sphero in die arena gelegt wurde, hat es die positionen der anderen empfangen und sofort die bewegung initialisiert
+
+
+Reinlegen der spheros in entgegengesetzter reihenfolge nach launch file:
+- funktioniert auch
+
+Reinlegen der spheros Green > Red > Blue:
+- hat funktioniert 
+
+Reinlegen der spheros Red > Green > Blue:
+- hat funktioniert
+
+Reinlegen der spheros Blue > Red > Green:
+- funktioniert nicht
+- Red subscribed nicht zu Blue --> Red bekommt keine position von blue
+- Red richtet sich nur nach Green
+
+Reinlegen der spheros Blue > Green > Red:
+- exakt gleiches problem wie davor
+
+
+
+
+
+#################################
+Präsentation:
+- Aufgabe und Ziele am Anfang des Projekts
+	- Aus der Vorlesung Schwarmintelligenz: spheros sollen formation einnehmen --> schwarm
+	- im speziellen "seek a comfortable distance", dynamisches reinlegen/rausnehmen, Evaluation performance
+- Vorgehensweise Implementierung:
+		- "seek a comfortable distance"
+		- haben es vorerst hard-gecodet für jeden einzeln sphero
+		- umgeschrieben in eine gemeinsame datei für alle spheros
+		- PROBLEM: https://github.com/ovgu-FINken/Rolling-Swarm/issues/90#issuecomment-497937570
+		- FIX: https://github.com/ovgu-FINken/Rolling-Swarm/issues/90#issuecomment-498419121
+		- Haben gleichzeitig das reinlegen implementiert mit dem FIX
+		- Haben das rausnehmen nicht implementiert
+		- weitere generelle probleme: vorher anderes launch file starten, node tag, kamera erkennt falsche positionen/farben
+- Evaluation
+	- generelle probleme: Wand, Spheros zu nahe beieinander, reihenfolge, hatten nur 3 spheros/farben zur verfügung
+	- vorgehen beschreiben bei der evalutation der Parameter
+	- Parameter k
+	- Parameter d
+	- mit den guten parametern dann formationen getestet
+	- verhalten beim reinlegen eines spheros in die arena
+	- zeit für 2 spheros | zeit für 3 spheros mit festen startpunkten --> zu viele unabsehbare variablen
+
+- DEMO ZEIGEN
+
+- Abschluss
+	- was geht besser
+		- parameter
+	- was fehlt
+		- rausnehmen
+		- was passiert bei mehr als 3 spheros
+	- was kann man auf dieser implementation aufbauen
+		- parameter, die sich auch dynamisch anpassen
+		- formation einnehmen und dann in dieser formation eine bewegung durchführen
+
+
+
+
+
+Grafisches zeug:
+	- formationen
+	- parameter evaluation/performance (fehler, im dreieck)
+	- demo video machen
+
+
+
+
+
+
+Dokumentation:
+- Milestones/Goal mit kleiner Beschreibung (Concept)
+
+- Tutorial
+	- How to use/launch (schrittweise erklärung mit reihenfolge + Hinweis demorace)
+	- Formations (Erklärung mit Matrix beispielbild)
+	- More spheros/colors (mit code beispiel)
+	- Ranging veränderungen mit checkstatus (wenn man unser Ranging benutzen will, muss checkstatus dazu)
+
+- Demo video
+
+- Implementierung
+	- Ranging Erklärung (Hinweis/Link zu TPVS) und Änderungen Check Status (Zu viele Farben fix und Filter falsche Positionen)
+	- sphero_demo_test.py Implementierung (Erklärung, Codebeispiel Schleife/pos.xy und receive_pose timer, Bild aus VL mit Variablennamen)
+		- Bild aus VL, Variablen erklären
+		- Erklärung mit Codebeispiel Schleife/pos
+		- Erklärung mit Codebeispiel receive_pose timer
+	- Probleme
+		- Reihenfolge
+		- Wenn man nur mit 2 arbeiten will, launch file auf 2 anpassen und den dritten rausnehmen
+
+- Evaluation
+	- parameter d und k
+		- kurze Erklärung Versuchsaufbau
+		- Ergebnisse, 2 graphen, kurze erklärung der 2 graphen
+	- formationen
+		- kurze Erklärung Versuchsaufbau
+		- Ergebnisse, Graph, kurze Erkärung
+	- Probleme
+		- Spheros zu nahe beieinander (umso häufiger dest schlechter die parameter/formationen)
+
+- Future improvements/applications
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
